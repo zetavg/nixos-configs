@@ -1,0 +1,6 @@
+{ ... }:
+
+{
+  # Change this to which machine you are on
+  imports = [ ./machines/sample ];
+}
