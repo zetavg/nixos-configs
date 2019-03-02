@@ -8,6 +8,7 @@
     ./ssh.nix
     ./dns.nix
     ./mail.nix
+    ./torrent.nix
   ];
 
   networking.hostName = "serv.cat";
