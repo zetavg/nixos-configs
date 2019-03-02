@@ -3,11 +3,11 @@
 {
   imports = [
     <nixpkgs/nixos/modules/virtualisation/google-compute-config.nix>
-    ../../common/openssh.nix
-    ../../common/mosh.nix
-    ../../common/zsh.nix
-    ../../common/users.nix
     ./fstab.nix
+    ./users.nix
+    ./ssh.nix
+    ./dns.nix
+    ./mail.nix
   ];
 
   networking.hostName = "serv.cat";
