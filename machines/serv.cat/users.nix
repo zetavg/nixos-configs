@@ -7,6 +7,7 @@
   ];
 
   users.users.z.hashedPassword = "$6$fo3UzQiZE9RqlPeD$CNdw/X2RWwfc114kXbdJMXzY.YeIAIU6SAHcY4V1xmCDYXRbceDqo5d2tX8dn22.M43c0FOnzCyf7knz4NjYs1";
+  users.users.z.extraGroups = lib.mkAfter [ "transmission" ];
 
   users.users.test = {
     isNormalUser = true;
