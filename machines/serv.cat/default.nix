@@ -6,9 +6,7 @@
     ./fstab.nix
     ./users.nix
     ./ssh.nix
-    ./vpn.nix
-    ./dns.nix
-    ./mail.nix
+    ./servers
     ./torrent.nix
   ];
 

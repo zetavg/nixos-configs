@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../common/bind.nix
+    ../../../common/bind.nix
   ];
 
   services.bind.zones = [

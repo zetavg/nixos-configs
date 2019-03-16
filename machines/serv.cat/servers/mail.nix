@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../common/postfix.nix
-    ../../common/dovecot.nix
+    ../../../common/postfix.nix
+    ../../../common/dovecot.nix
   ];
 
   services.postfix = {
