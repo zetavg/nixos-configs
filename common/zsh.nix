@@ -1,3 +1,4 @@
+# Zsh with the Antibody Plugin Manager
 { pkgs, lib, ... }:
 
 {

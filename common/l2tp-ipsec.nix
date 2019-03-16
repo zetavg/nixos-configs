@@ -1,3 +1,4 @@
+# VPN Server
 { pkgs, lib, ... }:
 
 {

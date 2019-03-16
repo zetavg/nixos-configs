@@ -1,8 +1,9 @@
+# SMTP Mail Server
 { pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; lib.mkAfter [
-   postfix
+    postfix
   ];
 
   services.postfix.enable = true;

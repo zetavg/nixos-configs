@@ -1,3 +1,4 @@
+# Mosh: The Mobile Shell
 { pkgs, lib, ... }:
 
 {
