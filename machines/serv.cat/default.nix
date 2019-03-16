@@ -10,7 +10,7 @@
     ./torrent.nix
   ];
 
-  networking.hostName = "serv.cat";
+  networking.hostName = lib.mkDefault "serv.cat";
 
   systemd.services.fetch-ssh-keys.enable = false;
   systemd.services.google-clock-skew-daemon.enable = false;

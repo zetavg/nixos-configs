@@ -1,6 +1,10 @@
 { ... }:
 
 {
-  # Change this to which machine you are on
-  imports = [ ./machines/sample ];
+  imports = [
+    # Change this to which machine you are on
+    ./machines/sample
+  ]
+  # Always import extra local configurations by convention
+  ++ import ./local-imports.nix;
 }

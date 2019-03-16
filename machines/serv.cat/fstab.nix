@@ -1,12 +1,12 @@
-{ ... }:
+{ lib, ... }:
 
 {
-  fileSystems."/home" = {
+  fileSystems."/home" = lib.mkDefault {
     device = "/dev/disk/by-label/home";
     autoResize = true;
   };
 
-  swapDevices = [
+  swapDevices = lib.mkDefault [
     {
       device = "/home/swapfile";
       size = 2048;
