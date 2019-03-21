@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+include FileUtils
+
+APP_ROOT = File.expand_path('..', __dir__)
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+chdir APP_ROOT do
+  if !ENV['IN_NIX_SHELL']
+    # Normal gem installation with bundler
+    system! 'gem install bundler --conservative'
+    system('bundle check') || system!('bundle install')
+  else
+    # If a nix shell, let bundler generate Gemfile.lock and bundix to write gemset.nix
+    system! 'BUNDLE_GEMFILE=./Gemfile BUNDLE_PATH=/tmp/fake-bundle-path bundler lock'
+    system! 'bundix'
+    system! 'touch default.nix'
+  end
+end
