@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   pkgs = import ../pkgs { };
@@ -19,4 +19,8 @@ in {
       passenger_log_file /var/log/passenger.log;
     '';
   };
+
+  imports = [
+    ../services/passenger-log-systemd-cat.nix
+  ];
 }
