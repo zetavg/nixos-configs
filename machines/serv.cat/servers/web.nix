@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -10,8 +10,13 @@
 
     # A sample Rails app with Action Cable
     virtualHosts."rails.sample.serv.cat" = let
-      pkgs = import ../../../pkgs { };
-      app = pkgs.sample-rails-app.override {
+      mkSampleRailsAppDrv = pkgs.fetchFromGitHub {
+        owner = "zetavg";
+        repo = "rails-nix-sample";
+        rev = "93d44738c125422cfd65b76d4937ef7756f8ee81";
+        sha256 = "0cbqlf043q3jwyirdk3fg5b7idfqni0xd3r000iz9p7hr6flg4zw";
+      };
+      app = import mkSampleRailsAppDrv {
         actionCable = {
           adapter = "redis";
           url = "redis://localhost:6379/31";
