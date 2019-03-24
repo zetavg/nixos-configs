@@ -8,6 +8,27 @@
   services.nginx = {
     enable = true;
 
+    # A sample proxy-pass server
+    virtualHosts."3039.port.serv.cat" = {
+      serverAliases = [
+        "port-3039.serv.cat"
+      ];
+      enableACME = true;
+      forceSSL = true; # Use addSSL = true; to enable SSL without force
+      locations."/" = {
+        proxyPass = "http://localhost:3039";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Ssl on; # Optional
+          proxy_set_header X-Forwarded-Port $server_port;
+          proxy_set_header X-Forwarded-Host $host;
+        '';
+      };
+    };
+
     # A sample Rails app with Action Cable
     virtualHosts."rails.sample.serv.cat" = let
       mkSampleRailsAppDrv = import (pkgs.fetchFromGitHub {
@@ -24,6 +45,9 @@
         };
       };
     in {
+      serverAliases = [
+        "rails-sample.serv.cat"
+      ];
       enableACME = true;
       forceSSL = true; # Use addSSL = true; to enable SSL without force
       root = "${app}/public";
