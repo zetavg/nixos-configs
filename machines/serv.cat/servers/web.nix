@@ -34,11 +34,11 @@
       mkSampleRailsAppDrv = import (pkgs.fetchFromGitHub {
         owner = "zetavg";
         repo = "rails-nix-sample";
-        rev = "93d44738c125422cfd65b76d4937ef7756f8ee81";
-        sha256 = "0cbqlf043q3jwyirdk3fg5b7idfqni0xd3r000iz9p7hr6flg4zw";
+        rev = "e64d8181396d92e62862f11fea540c0a68803315";
+        sha256 = "10m4b9by7lzqgfjnjng0fhrqlpmn7iy1banyjm9hpylqbqz76d4k";
       });
       app = mkSampleRailsAppDrv {
-        actionCable = {
+        actionCableConfig = {
           adapter = "redis";
           url = "redis://localhost:6379/31";
           channel_prefix = "${app.name}-cable";
