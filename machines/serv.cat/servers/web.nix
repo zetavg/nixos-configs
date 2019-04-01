@@ -34,8 +34,8 @@
       mkSampleRailsAppDrv = import (pkgs.fetchFromGitHub {
         owner = "zetavg";
         repo = "rails-nix-sample";
-        rev = "b4e9a3c0c941eb6d5a6f909fddced450428cb1db";
-        sha256 = "1jv9ql486w62v2j0qmidrhz10pzgg1i16ip3ljy39h5sizjfgnl7";
+        rev = "f6c28d0d9b8520ec77fab24ef428aebfadc3022b";
+        sha256 = "1gc92mzcmxk3pbl6778n4aymzf6s7xkrnzqds6cbbs5724d3zyxp";
       });
       app = mkSampleRailsAppDrv {
         actionCableConfig = {

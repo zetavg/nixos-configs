@@ -2,7 +2,7 @@ let
   src = (import <nixpkgs> { }).fetchFromGitHub {
     owner = "zetavg";
     repo = "nix-packages";
-    rev = "357a51ab14ed1f9fd5f0ff19f1560f4a1f02d5fc";
-    sha256 = "0bhkx9sagwssx9daxnh2bcvjvjqdynvbyfmhnz2pzmxpdylri95q";
+    rev = "a1078f6795ed3f5cd0ae29c86acbd6ca58107ee0";
+    sha256 = "0r1khcrbfdlpgv8w710mr1rnzdw89177r8hp3x86dfx5wp5gdnbd";
   };
 in import src
