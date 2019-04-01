@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  customPkgs = import ../../pkgs { };
+in {
   imports = [
     <nixpkgs/nixos/modules/virtualisation/google-compute-config.nix>
     ./fstab.nix
@@ -27,7 +29,7 @@
     parted
     git
     vim
-    direnv
+    customPkgs.direnv
     wakatime
   ];
 }
