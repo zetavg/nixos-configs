@@ -1,11 +1,8 @@
-{ ... }:
-
 let
-  nixpkgs = import <nixpkgs> { };
-  callPackage = nixpkgs.lib.callPackageWith (nixpkgs // pkgs);
-  pkgs = rec {
-    passenger = callPackage ./servers/passenger { };
-    nginx-mod-passenger = callPackage ./servers/nginx-mod-passenger.nix { };
-    nginx-with-passenger = callPackage ./servers/nginx-with-passenger.nix { };
+  src = (import <nixpkgs> { }).fetchFromGitHub {
+    owner = "zetavg";
+    repo = "nix-packages";
+    rev = "09993f5abf7ea7b07b4f24eec7dab6ddd33f0cef";
+    sha256 = "0ca1mnbc378bl0xln71fp3m9sv29ik1yac108mhry1lir287n0mf";
   };
-in pkgs
+in import src
