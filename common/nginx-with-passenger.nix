@@ -1,11 +1,18 @@
-# Web Application Server
+/*
+ * Web Application Server
+ */
+
 { pkgs, lib, config, ... }:
 
 let
-  pkgs = import ../pkgs { };
   nginx = pkgs.nginx-with-passenger;
   passenger = pkgs.nginx-with-passenger.passenger;
 in {
+  imports = [
+    ./zpkgs.nix # nginx-with-passenger is in zpkgs
+    ../services/passenger-log-systemd-cat.nix
+  ];
+
   environment.systemPackages = lib.mkAfter [
     nginx
     passenger
@@ -20,8 +27,4 @@ in {
       passenger_log_file /var/log/passenger.log;
     '';
   };
-
-  imports = [
-    ../services/passenger-log-systemd-cat.nix
-  ];
 }

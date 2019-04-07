@@ -4,6 +4,7 @@ let
   customPkgs = import ../../pkgs { };
 in {
   imports = [
+    ./nix.nix
     <nixpkgs/nixos/modules/virtualisation/google-compute-config.nix>
     ./fstab.nix
     ./users.nix
