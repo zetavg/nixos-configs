@@ -11,36 +11,6 @@ let
     url = "https://github.com/zetavg/nix-packages.git";
     ref = "master";
   };
-  overlays-compat = let
-    nixosExpectedSystem =
-      if config.nixpkgs.crossSystem != null
-      then config.nixpkgs.crossSystem.system
-      else config.nixpkgs.localSystem.system;
-  in with pkgs; derivation {
-    name = "overlays-compat";
-    system = nixosExpectedSystem;
-    builder = "${bash}/bin/bash";
-    args = [
-      "-c"
-      ''
-        ${coreutils}/bin/mkdir -p $out && \
-        echo "$src" > "$out/overlays.nix"
-      ''
-    ];
-    src = ''
-      self: super:
-      with super.lib; let
-        # Using the nixos plumbing that's used to evaluate the config...
-        eval = import <nixpkgs/nixos/lib/eval-config.nix>;
-        # Evaluate the config,
-        paths = (eval {modules = [(import <nixos-config>)];})
-          # then get the `nixpkgs.overlays` option.
-          .config.nixpkgs.overlays
-        ;
-      in
-      foldl' (flip extends) (_: super) paths self
-    '';
-  };
 in {
   # Use the package collection as an overlay of nixpkgs
   nixpkgs.overlays =
@@ -48,9 +18,11 @@ in {
     (import "${zpkgs-source}/manifest.nix");
 
   # Also apply the zpkgs overlay to users under the system
-  # http://bit.ly/using-overlays-from-config-as-nixpkgs-overlays-in-NIX_PATH
+  # See:
+  #  - http://bit.ly/using-overlays-from-config-as-nixpkgs-overlays-in-NIX_PATH
+  #  - http://bit.ly/overlays-compat-in-zpkgs
   # TODO: Make a option to disable this
-  nix.nixPath =
+  nix.nixPath = with pkgs;
     (options.nix.nixPath.default or [ ]) ++
     [ "nixpkgs-overlays=${overlays-compat}/" ]
   ;
