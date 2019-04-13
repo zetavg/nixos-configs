@@ -4,12 +4,14 @@
 
 { pkgs, config, options, ... }:
 
-
 let
   # TODO: Make a option to select this
   zpkgs-source = builtins.fetchGit {
     url = "https://github.com/zetavg/nix-packages.git";
     ref = "master";
+    # Get the latest commit rev on
+    # https://github.com/zetavg/nix-packages/commits/master
+    rev = "1d5ce28f9ebb2656c011dc2d280f2c7ba522a988";
   };
 in {
   # Use the package collection as an overlay of nixpkgs
@@ -26,6 +28,8 @@ in {
     (options.nix.nixPath.default or [ ]) ++
     [ "nixpkgs-overlays=${overlays-compat}/" ]
   ;
+
+  nix.useSandbox = false;
 
   # Add binary cache servers for zpkgs
   nix.binaryCaches = (options.nix.binaryCaches.default or [ ]) ++ [
