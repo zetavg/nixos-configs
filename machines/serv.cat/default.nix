@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let
-  customPkgs = import ../../pkgs { };
-in {
+{
   imports = [
     ./nix.nix
     <nixpkgs/nixos/modules/virtualisation/google-compute-config.nix>
@@ -30,7 +28,7 @@ in {
     parted
     git
     vim
-    customPkgs.direnv
+    direnv
     wakatime
   ];
 }
