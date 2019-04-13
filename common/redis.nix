@@ -1,4 +1,7 @@
-# In-memory Key-value Data Structure Store
+/*
+ * In-memory Key-value Data Structure Store
+ */
+
 { pkgs, lib, ... }:
 
 {

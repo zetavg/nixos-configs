@@ -1,4 +1,7 @@
-# Mosh: The Mobile Shell
+/*
+ * Mosh: The Mobile Shell
+ */
+
 { pkgs, lib, ... }:
 
 {

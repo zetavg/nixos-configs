@@ -1,4 +1,7 @@
-# SMTP Mail Server
+/*
+ * SMTP Mail Server
+ */
+
 { pkgs, lib, ... }:
 
 {

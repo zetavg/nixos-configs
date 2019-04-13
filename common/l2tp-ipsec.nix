@@ -1,4 +1,7 @@
-# VPN Server
+/*
+ * VPN Server
+ */
+
 { pkgs, lib, ... }:
 
 {

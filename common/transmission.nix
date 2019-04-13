@@ -1,4 +1,7 @@
-# BitTorrent Client
+/*
+ * BitTorrent Client
+ */
+
 { pkgs, lib, ... }:
 
 {

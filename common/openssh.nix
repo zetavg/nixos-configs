@@ -1,4 +1,7 @@
-# SSH Server
+/*
+ * SSH Server
+ */
+
 { lib, ... }:
 
 {

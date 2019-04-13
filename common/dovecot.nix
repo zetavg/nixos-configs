@@ -1,4 +1,7 @@
-# POP3/IMAP Mail Server
+/*
+ * POP3/IMAP Mail Server
+ */
+
 { pkgs, lib, ... }:
 
 {

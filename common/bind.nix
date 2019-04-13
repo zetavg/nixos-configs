@@ -1,4 +1,7 @@
-# DNS Server
+/*
+ * DNS Server
+ */
+
 { pkgs, lib, ... }:
 
 {
