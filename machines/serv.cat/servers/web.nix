@@ -68,6 +68,15 @@
 
     # A sample Rails app with Action Cable
     virtualHosts."rails.sample.serv.cat" = let
+      # To use the source code from git, write:
+      # mkSampleRailsApp = import (builtins.fetchGit {
+      #   url = "https://github.com/zetavg/rails-nix-sample.git";
+      #   ref = "master";
+      #   rev = "22b727b95ea7c9e5eca013a794e0d526caa7f4d5";
+      # });
+      # app = mkSampleRailsApp {
+      #   ...
+      # };
       app = pkgs.sample-rails-app.override {
         actionCableConfig = {
           adapter = "redis";
@@ -81,19 +90,8 @@
       ];
       enableACME = true;
       forceSSL = true; # Use addSSL = true; to enable SSL without force
-      root = "${app}/public";
-      extraConfig = ''
-        passenger_enabled on;
-        passenger_sticky_sessions on;
-        passenger_ruby ${app.ruby}/bin/ruby;
-        passenger_env_var GEM_HOME ${app.gemHome};
-        passenger_env_var BUNDLE_GEMFILE ${app.bundleGemfile};
-        passenger_env_var BUNDLE_PATH ${app.bundlePath};
-        location /cable {
-          passenger_app_group_name ${app.name}_action_cable;
-          passenger_force_max_concurrent_requests_per_process 0;
-        }
-      '';
+      root = app.publicRoot;
+      extraConfig = app.nginxPassengerConfig;
     };
 
     # A sample proxy-pass server
