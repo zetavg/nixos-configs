@@ -25,6 +25,7 @@
 
     systemd.services.passengerLogSystemdCat = {
       after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
       description = "Start piping Passenger log file to systemd-cat.";
       preStart = ''
         ${pkgs.coreutils}/bin/mkdir -p /var/log
