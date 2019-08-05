@@ -8,6 +8,7 @@
     ./users.nix
     ./ssh.nix
     ./servers
+    ./elk.nix
     ./torrent.nix
   ];
 
