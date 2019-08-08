@@ -1,0 +1,120 @@
+{
+  "order" : 0,
+  "version" : 60001,
+  "index_patterns" : [
+    "logstash-*"
+  ],
+  "settings" : {
+    "index" : {
+      "lifecycle" : {
+        "name" : "logstash-policy",
+        "rollover_alias" : "logstash"
+      },
+      "number_of_shards" : "1",
+      "refresh_interval" : "5s"
+    }
+  },
+  "mappings" : {
+    "dynamic_templates" : [
+      {
+        "message_field" : {
+          "path_match" : "message",
+          "mapping" : {
+            "norms" : false,
+            "type" : "text"
+          },
+          "match_mapping_type" : "string"
+        }
+      }
+    ],
+    "properties" : {
+      "@timestamp" : {
+        "type" : "date"
+      },
+      "geoip" : {
+        "dynamic" : true,
+        "properties" : {
+          "ip" : {
+            "type" : "ip"
+          },
+          "latitude" : {
+            "type" : "half_float"
+          },
+          "location" : {
+            "type" : "geo_point"
+          },
+          "longitude" : {
+            "type" : "half_float"
+          }
+        }
+      },
+      "type" : {
+        "type" : "keyword"
+      },
+      "subtype" : {
+        "type" : "keyword"
+      },
+      "facility" : {
+        "type" : "keyword"
+      },
+      "ident" : {
+        "type" : "keyword"
+      },
+      "priority" : {
+        "type" : "keyword"
+      },
+      "method" : {
+        "type" : "keyword"
+      },
+      "nginx" : {
+        "dynamic" : true,
+        "properties" : {
+          "server_addr" : {
+            "type" : "ip"
+          },
+          "body_bytes_sent" : {
+            "type" : "long"
+          },
+          "bytes_sent" : {
+            "type" : "long"
+          },
+          "realip_remote_addr" : {
+            "type" : "ip"
+          },
+          "remote_addr" : {
+            "type" : "ip"
+          },
+          "request_completion" : {
+            "type" : "keyword"
+          },
+          "request_method" : {
+            "type" : "keyword"
+          },
+          "request_time" : {
+            "type" : "scaled_float",
+            "scaling_factor" : "1000"
+          },
+          "server_protocol" : {
+            "type" : "keyword"
+          },
+          "ssl_cipher" : {
+            "type" : "keyword"
+          },
+          "ssl_protocol" : {
+            "type" : "keyword"
+          },
+          "status" : {
+            "type" : "keyword"
+          },
+          "server_protocol" : {
+            "type" : "keyword"
+          }
+        }
+      },
+      "@version" : {
+        "type" : "keyword"
+      }
+    }
+  },
+  "aliases" : { }
+}

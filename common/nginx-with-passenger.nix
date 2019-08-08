@@ -10,7 +10,7 @@ let
 in {
   imports = [
     ./zpkgs.nix # nginx-with-passenger is in zpkgs
-    ../services/passenger-log-systemd-cat.nix
+    # ../services/passenger-log-systemd-cat.nix # We use Filebeat to pipe logs to Logstash now
   ];
 
   environment.systemPackages = lib.mkAfter [
