@@ -52,13 +52,13 @@ let
     };
 
     dataDir = mkOption {
-      description = "Kibana data directory";
+      description = "Filebeat data directory";
       default = "/var/lib/filebeat";
       type = types.path;
     };
 
     extraConf = mkOption {
-      description = "Elastic APM Server extra configuration";
+      description = "Filebeat extra configuration";
       default = {};
       type = types.attrs;
     };

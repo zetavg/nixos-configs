@@ -9,6 +9,7 @@
     ./ssh.nix
     ./servers
     ./elk.nix
+    ./metricbeat.nix
     ./torrent.nix
   ];
 
