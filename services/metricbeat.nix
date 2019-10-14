@@ -70,7 +70,7 @@ let
   };
   cfg = config.services."${serviceName}";
   modulesFile = pkgs.writeText "metricbeat-modules.yml" cfg.modules;
-  cfgFile = pkgs.writeText "filebeat.json" (builtins.toJSON (
+  cfgFile = pkgs.writeText "metricbeat.json" (builtins.toJSON (
     (lib.filterAttrsRecursive (n: v: v != null) ({
       metricbeat.config.modules = {
         path = modulesFile;
