@@ -11,7 +11,7 @@ let
     ref = "master";
     # Get the latest commit rev on
     # https://github.com/zetavg/nix-packages/commits/master
-    rev = "1b89f48f46244d652850900341f29dd2026df7e3";
+    rev = "eeb04bc12e8917edd052558b388afd67e098e71e";
   };
 in {
   # Use the package collection as an overlay of nixpkgs
