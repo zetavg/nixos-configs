@@ -28,6 +28,7 @@
 
   environment.systemPackages = with pkgs; lib.mkAfter [
     parted
+    cloud-utils
     git
     vim
     direnv
