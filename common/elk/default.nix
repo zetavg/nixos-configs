@@ -26,6 +26,12 @@ in {
   # The elasticsearch package has an unfree license
   nixpkgs.config.allowUnfree = true;
 
+  services.elasticsearch = {
+    enable = true;
+    package = pkgs.elasticsearch7;
+    # listening on 127.0.0.1:9200 by default
+  };
+
   services.logstash = {
     enable = true;
     package = pkgs.logstash7;
@@ -53,14 +59,20 @@ in {
       }
     '';
   };
-  services.elasticsearch = {
-    enable = true;
-    package = pkgs.elasticsearch7;
-    # listening on 127.0.0.1:9200 by default
-  };
+
   services.kibana = {
     enable = true;
     package = pkgs.kibana7;
     # listening on 127.0.0.1:5601 by default
   };
+
+  # The "elasticsearch", "logstash" and "kibana" systemd service did not have
+  # the "Restart" option setted, and therefore will not be automatically
+  # restarted on failure or when exited. We manually set it here.
+  # Ref:
+  #  - nixpkgs/nixos/modules/services/search/kibana.nix
+  #  - https://www.freedesktop.org/software/systemd/man/systemd.service.html#Restart=
+  systemd.services.elasticsearch.serviceConfig.Restart = "on-failure";
+  systemd.services.logstash.serviceConfig.Restart = "on-failure";
+  systemd.services.kibana.serviceConfig.Restart = "on-failure";
 }
