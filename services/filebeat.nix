@@ -99,6 +99,9 @@ in {
           " --path.data ${cfg.dataDir}" +
           " -e";
         User = serviceName;
+        Restart = "on-failure";
+        RestartSec = "10";
+        TimeoutStartSec = "3600";
       };
     };
   };

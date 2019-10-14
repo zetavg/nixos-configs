@@ -72,7 +72,19 @@ in {
   # Ref:
   #  - nixpkgs/nixos/modules/services/search/kibana.nix
   #  - https://www.freedesktop.org/software/systemd/man/systemd.service.html#Restart=
-  systemd.services.elasticsearch.serviceConfig.Restart = "on-failure";
-  systemd.services.logstash.serviceConfig.Restart = "on-failure";
-  systemd.services.kibana.serviceConfig.Restart = "on-failure";
+  systemd.services.elasticsearch.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "10";
+    TimeoutStartSec = "3600";
+  };
+  systemd.services.logstash.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "10";
+    TimeoutStartSec = "3600";
+  };
+  systemd.services.kibana.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "10";
+    TimeoutStartSec = "3600";
+  };
 }
