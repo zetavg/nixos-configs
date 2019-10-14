@@ -90,6 +90,12 @@ in {
         ExecStart =
           "${cfg.package}/bin/apm-server" +
           " -c ${cfgFile}" +
+          # TODO: Allow customizing the default pipeline, which apm-server will load from "<path.home>/ingest/pipeline/definition.json"?
+          # Ref:
+          #  - https://github.com/elastic/apm-server/blob/master/ingest/pipeline/definition.json
+          #  - https://www.elastic.co/guide/en/apm/server/7.1/configuring-ingest-node.html#configuring-ingest-node
+          # Will throw this error without the following line ("--path.home ..."): pipeline/output.go:100  Failed to connect to backoff(elasticsearch(...)): Connection marked as failed because the onConnect callback failed: open /nix/store/...-apm-server-7.4.0/bin/ingest/pipeline/definition.json: no such file or directory.
+          " --path.home ${cfg.package}/share" +
           " --path.data ${cfg.dataDir}" +
           " -e";
         User = "elastic-apm-server";
