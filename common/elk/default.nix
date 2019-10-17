@@ -48,9 +48,18 @@ in {
       }
     '';
     filterConfig = ""
-      + (builtins.readFile ./filter-config-syslog.conf)
-      + (builtins.readFile ./filter-config-nginx.conf)
-      + (builtins.readFile ./filter-config-passenger.conf);
+      + (builtins.readFile ./logstash-filter-configs/syslog.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/elasticsearch.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/logstash.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/kibana.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/filebeat.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/metricbeat.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/apm-server.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/acme.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/nginx.conf)
+      + (builtins.readFile ./logstash-filter-configs/nginx.conf)
+      + (builtins.readFile ./logstash-filter-configs/passenger.conf)
+      + (builtins.readFile ./logstash-filter-configs/after-all.conf);
     outputConfig = ''
       elasticsearch {
         hosts => ["127.0.0.1:9200"]
