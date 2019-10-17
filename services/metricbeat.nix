@@ -20,7 +20,7 @@ let
             - load            # CPU load averages
             - memory          # Memory usage
             - network         # Network IO
-            - process         # Per process metrics
+            #- process         # Per process metrics # Takes up too much space - https://d.pr/i/pHkQZ5
             - process_summary # Process summary
             - uptime          # System Uptime
             - socket_summary  # Socket summary
