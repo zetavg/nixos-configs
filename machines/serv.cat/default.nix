@@ -10,6 +10,7 @@
     ./servers
     ./elk.nix
     ./metricbeat.nix
+    ./heartbeat.nix
     ./torrent.nix
   ];
 

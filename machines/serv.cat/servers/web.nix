@@ -115,4 +115,28 @@
       };
     };
   };
+
+  # Monitor uptime using heartbeat7
+  services.heartbeat7.monitors = [
+    {
+      name = "serv.cat";
+      type = "http";
+      urls = "https://serv.cat";
+      schedule = "@every 30s";
+      check.response = {
+        status = 200;
+        body = [ "serv.cat" "NixOS" ];
+      };
+    }
+    {
+      name = "rails.sample.serv.cat";
+      type = "http";
+      urls = "https://rails.sample.serv.cat";
+      schedule = "@every 30s";
+      check.response = {
+        status = 200;
+        body = [ "Yay" "on Rails" ];
+      };
+    }
+  ];
 }

@@ -54,6 +54,7 @@ in {
       + (builtins.readFile ./logstash-filter-configs/syslog-daemons/kibana.conf)
       + (builtins.readFile ./logstash-filter-configs/syslog-daemons/filebeat.conf)
       + (builtins.readFile ./logstash-filter-configs/syslog-daemons/metricbeat.conf)
+      + (builtins.readFile ./logstash-filter-configs/syslog-daemons/heartbeat.conf)
       + (builtins.readFile ./logstash-filter-configs/syslog-daemons/apm-server.conf)
       + (builtins.readFile ./logstash-filter-configs/syslog-daemons/acme.conf)
       + (builtins.readFile ./logstash-filter-configs/syslog-daemons/nginx.conf)
