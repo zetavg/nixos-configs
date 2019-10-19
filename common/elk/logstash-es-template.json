@@ -105,6 +105,17 @@
           }
         }
       },
+      "timestamp_extra" : {
+        "dynamic" : true,
+        "properties" : {
+          "hour_of_day" : {
+            "type" : "byte"
+          },
+          "day_of_week" : {
+            "type" : "byte"
+          }
+        }
+      },
       "type" : {
         "type" : "keyword"
       },
