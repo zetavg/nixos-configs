@@ -26,7 +26,7 @@ let
             - socket_summary  # Socket summary
             - core            # Per CPU core usage
             - diskio          # Disk IO
-            - filesystem      # File system usage for each mountpoint
+            #- filesystem      # File system usage for each mountpoint
             #- fsstat         # File system summary metrics
             #- raid           # Raid
             #- socket         # Sockets and connection info (linux only)
@@ -37,6 +37,38 @@ let
           # Configure the metric types that are included by these metricsets.
           cpu.metrics:  ["percentages"]  # The other available options are normalized_percentages and ticks.
           core.metrics: ["percentages"]  # The other available option is ticks.
+
+        - module: system
+          metricsets:
+            - process
+          enabled: true
+          period: 60s
+          processes: ['.*']
+          # These options allow you to filter out all processes that are not
+          # in the top N by CPU or memory, in order to reduce the number of documents created.
+          # If both the `by_cpu` and `by_memory` options are used, the union of the two sets
+          # is included.
+          process.include_top_n:
+            # Set to false to disable this feature and include all processes
+            enabled: true
+            # How many processes to include from the top by CPU. The processes are sorted
+            # by the `system.process.cpu.total.pct` field.
+            by_cpu: 32
+            # How many processes to include from the top by memory. The processes are sorted
+            # by the `system.process.memory.rss.bytes` field.
+            by_memory: 32
+
+        - module: system
+          metricsets:
+            - filesystem
+          enabled: true
+          period: 30s
+
+        - module: system
+          metricsets:
+            - fsstat
+          enabled: true
+          period: 30s
       '';
       type = types.str;
     };
