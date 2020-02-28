@@ -17,6 +17,14 @@
     ];
   };
 
+  services.logstash = {
+    dataDir = "/home/var/lib/logstash";
+  };
+
+  services.kibana = {
+    dataDir = "/home/var/lib/kibana";
+  };
+
   services.filebeat = {
     enable = true;
   };
