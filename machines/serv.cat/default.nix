@@ -14,6 +14,8 @@
     ./torrent.nix
   ];
 
+  fileSystems."/".autoResize = lib.mkForce false; # This takes too long (about 160s) on each boot
+
   networking.hostName = lib.mkOverride 800 "serv.cat";
 
   systemd.services.fetch-ssh-keys.enable = false;
