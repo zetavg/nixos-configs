@@ -11,7 +11,10 @@
 
   services.elasticsearch = {
     dataDir = "/home/var/lib/elasticsearch";
-    extraJavaOptions = [ "-Xms128m" "-Xmx800m" ];
+    extraJavaOptions = [
+      "-Xms128m"
+      "-Xmx1024m"
+    ];
   };
 
   services.filebeat = {
