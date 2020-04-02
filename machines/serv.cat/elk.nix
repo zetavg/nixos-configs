@@ -15,6 +15,11 @@
       "-Xms128m"
       "-Xmx1024m"
     ];
+    extraConf = ''
+      cluster.routing.allocation.disk.watermark.low: 4gb
+      cluster.routing.allocation.disk.watermark.high: 3gb
+      cluster.routing.allocation.disk.watermark.flood_stage: 2gb
+    '';
   };
 
   services.logstash = {
