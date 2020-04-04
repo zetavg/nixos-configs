@@ -27,4 +27,7 @@ in {
       passenger_log_file ${config.services.nginx.stateDir}/logs/passenger.log;
     '';
   };
+
+  # Give Nginx a home so Passenger can have a place to store built native support files
+  users.users.nginx.home = "/home/nginx";
 }
