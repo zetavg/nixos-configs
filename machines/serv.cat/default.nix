@@ -14,7 +14,8 @@
     ./torrent.nix
   ];
 
-  fileSystems."/".autoResize = lib.mkForce false; # This takes too long (about 160s) on each boot
+  # Auto resize takes too long (about 160s) on each boot
+  fileSystems."/".autoResize = lib.mkForce false;
 
   networking.hostName = lib.mkOverride 800 "serv.cat";
 
