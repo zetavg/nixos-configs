@@ -24,7 +24,7 @@ in {
 
     appendHttpConfig = ''
       passenger_root ${passenger};
-      passenger_log_file /var/log/passenger.log;
+      passenger_log_file ${config.services.nginx.stateDir}/logs/passenger.log;
     '';
   };
 }

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -10,7 +10,7 @@
       {
         type = "log";
         enabled = true;
-        paths = ["/var/log/passenger.log"];
+        paths = ["${config.services.nginx.stateDir}/logs/passenger.log"];
         fields = {
           type = "passenger";
         };
