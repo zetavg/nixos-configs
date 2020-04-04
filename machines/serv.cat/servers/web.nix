@@ -31,12 +31,12 @@
             info "Host" model
             info "Kernel" kernel
             info "Uptime" uptime
-            prin "Load Average" "$(uptime | awk -F' *,? *' '{print $(NF-2), $(NF-1), $NF}')"
-            info "Packages" packages
+            # prin "Load Average" "$(uptime | awk -F' *,? *' '{print $(NF-2), $(NF-1), $NF}')"
+            # info "Packages" packages
             info "CPU" cpu
-            info "CPU Usage" cpu_usage
-            info "Memory" memory
-            info "Disk" disk
+            # info "CPU Usage" cpu_usage
+            # info "Memory" memory
+            # info "Disk" disk
             prin "System Time" "$(date)"
 
             prin
@@ -45,12 +45,12 @@
           distro_shorthand="on"
           os_arch="on"
           uptime_shorthand="on"
-          memory_percent="on"
+          # memory_percent="on"
           package_managers="on"
-          cpu_temp="C"
-          gpu_brand="on"
-          gpu_type="all"
-          disk_show=('/' '/home')
+          # cpu_temp="C"
+          # gpu_brand="on"
+          # gpu_type="all"
+          # disk_show=('/' '/home')
           disk_subtitle="mount"
         '';
       };
