@@ -59,7 +59,7 @@ in {
     };
 
     dataDir = mkOption {
-      description = "Kibana data directory";
+      description = "Elastic APM Server data directory";
       default = "/var/lib/elastic-apm-server";
       type = types.path;
     };

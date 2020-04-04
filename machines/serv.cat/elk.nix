@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ../../common/elk.nix
+    ../../common/elk
     ../../services/filebeat.nix
     ../../common/filebeat/nginx.nix
     ../../common/filebeat/nginx-passenger.nix
     ../../services/elastic-apm-server.nix
+    ../../services/elastic-app-search.nix
   ];
 
   services.elasticsearch = {
@@ -36,5 +37,13 @@
 
   services.elasticApmServer = {
     enable = true;
+  };
+
+  services.elasticAppSearch = {
+    enable = true;
+    extraJavaOptions = [
+      "-Xms16m"
+      "-Xmx512m"
+    ];
   };
 }
