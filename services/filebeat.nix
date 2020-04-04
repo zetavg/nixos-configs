@@ -78,8 +78,7 @@ in {
   config = lib.mkIf (cfg.enable) {
     environment.systemPackages = [ cfg.package ];
 
-    users.users = singleton {
-      name = serviceName;
+    users.users."${serviceName}" = {
       description = "Filebeat user";
       # Need permission to read Nginx logs.
       # TODO: Make this configurable?

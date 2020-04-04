@@ -74,8 +74,7 @@ in {
   config = lib.mkIf (cfg.enable) {
     environment.systemPackages = [ cfg.package ];
 
-    users.users = singleton {
-      name = "elastic-apm-server";
+    users.users."elastic-apm-server" = {
       uid = 216;
       description = "Elastic APM Server user";
       home = cfg.dataDir;

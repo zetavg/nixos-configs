@@ -119,8 +119,7 @@ in {
   config = lib.mkIf (cfg.enable) {
     environment.systemPackages = [ cfg.package ];
 
-    users.users = singleton {
-      name = serviceName;
+    users.users."${serviceName}" = {
       description = "Metricbeat user";
       home = cfg.dataDir;
       createHome = true;
